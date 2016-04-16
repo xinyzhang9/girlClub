@@ -1,0 +1,19 @@
+<head>
+  <title>girlClub</title>
+</head>
+
+<body>
+  <h1>Welcome to Girl Club!</h1>
+
+  <ul>
+    {{#each girls}}
+      {{> girl}}
+    {{/each}}
+  </ul>
+
+</body>
+
+<template name="girl">
+  <li>{{name}}</li>
+</template>
+
