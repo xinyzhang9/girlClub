@@ -1,0 +1,65 @@
+<body>
+  <div class="container">
+    <header>
+      <h1>Welcome to Girl Club</h1>
+    </header>
+
+    <form class="new-girl">
+      <h4>for admin only</h4>
+        <input type="text" name="name" placeholder="name" />
+        <input type="text" name="image" placeholder="image" />
+        <input type="text" name="age" placeholder="age" />
+        <input type="text" name="height" placeholder="height(cm)" />
+        <input type="text" name="nickname" placeholder="nickname" />
+        <input type="text" name="birthplace" placeholder="place of birth" />
+        <input type="text" name="sing" placeholder="sing ability" />
+        <input type="text" name="dance" placeholder="dance ability" />
+        <input type="text" name="act" placeholder="act ability" />
+        <input type="text" name="instrument" placeholder="instrument ability" />
+        <input type="text" name="leadership" placeholder="leadership" />
+        <input type="text" name="potential" placeholder="potential" />
+        <input type="text" name="temper" placeholder="temper" />
+        <input type="text" name="rating" placeholder="rating" /><br>
+        <input type="submit" value ="submit">
+      </form>
+ 
+    <table class = "table">
+      <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Height</th>
+          <th>Nickname</th>
+          <th>Birthplace</th>
+          <th>Sing</th>
+          <th>Dance</th>
+          <th>Act</th>
+          <th>Instrument</th>
+          <th>Leadership</th>
+          <th>Potential</th>
+          <th>Temper</th>
+          <th>Rating</th>
+        </tr>
+      {{#each girls}}
+        {{> girl}}
+      {{/each}}
+    </table>
+  </div>
+</body>
+ 
+<template name="girl">   
+        <tr>
+          <td><img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header_image">{{name}}</td>
+          <td>{{age}}</td>
+          <td>{{height}}</td>
+          <td>{{nickname}}</td>
+          <td>{{birthplace}}</td>
+          <td>{{sing}}</td>
+          <td>{{dance}}</td>
+          <td>{{act}}</td>
+          <td>{{instrument}}</td>
+          <td>{{leadership}}</td>
+          <td>{{potential}}</td>
+          <td>{{temper}}</td>
+          <td>{{rating}}</td>
+        </tr>
+</template>
