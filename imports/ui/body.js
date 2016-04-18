@@ -6,7 +6,7 @@ import './body.html';
  
 Template.body.helpers({
   girls() {
-    return Girls.find({});
+    return Girls.find({}, { sort: { createdAt: -1 } });
   },
 });
 
@@ -31,6 +31,7 @@ Template.body.events({
     const potential = target.potential.value;
     const temper = target.temper.value;
     const rating = target.rating.value;
+    const fans = 0;
 
  
     // Insert a task into the collection
@@ -49,11 +50,19 @@ Template.body.events({
       potential,
       temper,
       rating,
+      fans,
       createdAt: new Date(), // current time
     });
  
     // Clear form
-    target.text.value = '';
+    target.name.value = '';
+    target.image.value = '';
+    target.age.value = '';
+    target.height.value = '';
+    target.nickname.value = '';
+    target.birthplace.value = '';
+
+    return false;
 
   },
 });
