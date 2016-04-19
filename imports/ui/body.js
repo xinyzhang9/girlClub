@@ -4,7 +4,7 @@ import { Girls } from '../api/girls.js';
  
 import './body.html';
  
-Template.body.helpers({
+Template.admin.helpers({
   girls() {
     return Girls.find({}, { sort: { createdAt: -1 } });
   },

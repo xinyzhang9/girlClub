@@ -1,9 +1,14 @@
 <body>
   <div class="container">
     <header>
-      <h1>Welcome to Girl Club</h1>
+      <h1 class = "title">Girl Club</h1>
     </header>
+  </div>
+    
+</body>
+ 
 
+  <template name = "admin">
     <form class="new-girl">
       <h4>for admin only</h4>
         <input type="text" name="name" placeholder="name" />
@@ -43,23 +48,34 @@
         {{> girl}}
       {{/each}}
     </table>
-  </div>
-</body>
- 
+  </template>
+
 <template name="girl">   
-        <tr>
-          <td><img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header_image">{{name}}</td>
-          <td>{{age}}</td>
-          <td>{{height}}</td>
-          <td>{{nickname}}</td>
-          <td>{{birthplace}}</td>
-          <td>{{sing}}</td>
-          <td>{{dance}}</td>
-          <td>{{act}}</td>
-          <td>{{instrument}}</td>
-          <td>{{leadership}}</td>
-          <td>{{potential}}</td>
-          <td>{{temper}}</td>
-          <td>{{rating}}</td>
-        </tr>
+  <tr>
+    <td><img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header_image">{{name}}</td>
+    <td>{{age}}</td>
+    <td>{{height}}</td>
+    <td>{{nickname}}</td>
+    <td>{{birthplace}}</td>
+    <td>{{sing}}</td>
+    <td>{{dance}}</td>
+    <td>{{act}}</td>
+    <td>{{instrument}}</td>
+    <td>{{leadership}}</td>
+    <td>{{potential}}</td>
+    <td>{{temper}}</td>
+    <td>{{rating}}</td>
+  </tr>
+</template>
+
+<template name = 'home'>
+  <div>
+    <p class = "home">Welcome to the home page.</p>
+  </div>
+</template>
+
+<template name="main">
+    {{> yield}}
+    <hr />
+    <p>Copyright &copy; xinyzhang9@gmail.com, 2015-2016.</p>
 </template>

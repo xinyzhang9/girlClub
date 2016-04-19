@@ -4,5 +4,9 @@
 	height: 120px;
 	display: block;
 }
-table{
+.title{
+	text-align: center;
+}
+.home{
+	text-align: center;
 }
