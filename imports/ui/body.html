@@ -28,8 +28,63 @@
         <input type="submit" value ="submit" class = "btn btn-success">
       </form>
  
+    <table class = "table list">
+      <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Height</th>
+          <th>Nickname</th>
+          <th>Birthplace</th>
+        </tr>
+      {{#each girls}}
+        {{> girl}}
+      {{/each}}
+    </table>
+  </template>
+
+<template name="girl">   
+  <tr>
+    <td>
+      <div>
+        <a href = "/member/{{_id}}">
+          <img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header_image">
+        </a>    
+      </div>
+      
+    </td>
+    <td><a href = "/member/{{_id}}">{{name}}</a></td>
+    <td>{{age}}</td>
+    <td>{{height}}</td>
+    <td>{{nickname}}</td>
+    <td>{{birthplace}}</td>
+  </tr>
+</template>
+
+<template name = 'home'>
+  <div>
+    <h4 class = "home">Welcome to the home page.</h4>
+  </div>
+</template>
+
+<template name="main">
+    {{> navigation}}
+    {{> yield}}
+    <hr />
+    <p>Copyright &copy; xinyzhang9@gmail.com, 2015-2016.</p>
+</template>
+
+<template name="navigation">
+  <ul class="nav nav-tabs">
+    <li role="presentation"><a href="{{pathFor route='home'}}">Home</a></li>
+    <li role="presentation"><a href="{{pathFor route='admin'}}">Admin</a></li>
+  </ul>
+</template>
+
+<template name="memberProfile">
     <table class = "table">
       <tr>
+          <th>Image</th>
           <th>Name</th>
           <th>Age</th>
           <th>Height</th>
@@ -43,39 +98,36 @@
           <th>Potential</th>
           <th>Temper</th>
           <th>Rating</th>
+          <th>fans</th>
         </tr>
-      {{#each girls}}
-        {{> girl}}
-      {{/each}}
+        <tr>
+          <td>
+            <a href = "/member/{{_id}}">
+              <img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header_image">
+          </a>
+          </td>
+          <td>{{name}}</td>
+          <td>{{age}}</td>
+          <td>{{height}}</td>
+          <td>{{nickname}}</td>
+          <td>{{birthplace}}</td>
+          <td>{{sing}}</td>
+          <td>{{dance}}</td>
+          <td>{{act}}</td>
+          <td>{{instrument}}</td>
+          <td>{{leadership}}</td>
+          <td>{{potential}}</td>
+          <td>{{temper}}</td>
+          <td>{{rating}}</td>
+          <td>{{fans}}</td>
+        </tr>
+
     </table>
-  </template>
-
-<template name="girl">   
-  <tr>
-    <td><img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header_image">{{name}}</td>
-    <td>{{age}}</td>
-    <td>{{height}}</td>
-    <td>{{nickname}}</td>
-    <td>{{birthplace}}</td>
-    <td>{{sing}}</td>
-    <td>{{dance}}</td>
-    <td>{{act}}</td>
-    <td>{{instrument}}</td>
-    <td>{{leadership}}</td>
-    <td>{{potential}}</td>
-    <td>{{temper}}</td>
-    <td>{{rating}}</td>
-  </tr>
 </template>
 
-<template name = 'home'>
+
+<template name = "myclub">
   <div>
-    <p class = "home">Welcome to the home page.</p>
+    <h3>welcome to your club</h3>
   </div>
-</template>
-
-<template name="main">
-    {{> yield}}
-    <hr />
-    <p>Copyright &copy; xinyzhang9@gmail.com, 2015-2016.</p>
 </template>
