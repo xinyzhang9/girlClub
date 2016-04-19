@@ -64,11 +64,15 @@
 <template name = 'home'>
   <div>
     <h4 class = "home">Welcome to the home page.</h4>
-    {{> loginButtons}}
   </div>
 </template>
 
 <template name="main">
+  {{> loginButtons}}
+      {{#if currentUser}}
+        <p>Hello, {{currentUser.username}}</p>
+      {{/if}}
+
     {{> navigation}}
     {{> yield}}
     <hr />
@@ -78,6 +82,7 @@
 <template name="navigation">
   <ul class="nav nav-tabs">
     <li role="presentation"><a href="{{pathFor route='home'}}">Home</a></li>
+    <li role="presentation"><a href="{{pathFor route='myclub'}}">MyClub</a></li>
     <li role="presentation"><a href="{{pathFor route='admin'}}">Admin</a></li>
   </ul>
 </template>
@@ -128,6 +133,7 @@
 
 
 <template name = "myclub">
+  {{# if hasNoClub}}
   <div>
     <h3>Welcome to the club</h3>
     <form class = "new-club form-inine">
@@ -153,8 +159,39 @@
           <option value="guangzhou">广州</option>
           <option value="chengdu">成都</option>
         </select>
+
+        <div class = "form-group">
+          <input type="submit" value = "submit" class = "btn btn-default">
+        </div>
+
       </div>
       
     </form>
   </div>
+  {{/if}}
+<hr>
+  <div>
+    <table class = "table">
+      <tr>
+        <th>Club Name</th>
+        <th>Action Points</th>
+        <th>Coins</th>
+        <th>Location</th>
+        <th>Members</th>
+        <th>Staffs</th>
+        <th>Contracts</th>        
+      </tr>
+      <tr>
+        <td>{{myclub.clubname}}</td>
+        <td>{{myclub.actionPoints}}</td>
+        <td>{{myclub.coins}}</td>
+        <td>{{myclub.location}}</td>
+        <td>{{myclub.members.length}}</td>
+        <td>{{myclub.staffs.length}}</td>
+        <td>{{myclub.contracts.length}}</td>
+      </tr>
+    </table>
+    
+  </div>
+
 </template>

@@ -33,7 +33,6 @@ Template.admin.events({
     const potential = target.potential.value;
     const temper = target.temper.value;
     const rating = target.rating.value;
-    const fans = 0;
 
  
     // Insert a task into the collection
@@ -52,7 +51,7 @@ Template.admin.events({
       potential,
       temper,
       rating,
-      fans,
+      fans : 0,
       createdAt: new Date(), // current time
     });
  

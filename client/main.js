@@ -1,5 +1,7 @@
 import '../imports/ui/admin.js';
+import '../imports/ui/club.js';
 import { Girls } from '../imports/api/girls.js';
+import { Clubs } from '../imports/api/clubs.js';
 import '../imports/startup/accounts-config.js';
 Router.route('/',{
 	name: 'home',
@@ -12,8 +14,9 @@ Router.route('/admin',{
 });
 
 Router.route('/myclub',{
-	name: 'myclub',
-    template: 'myclub'
+	name : 'myclub',
+	template: 'myclub',
+    
 });
 
 Router.configure({
