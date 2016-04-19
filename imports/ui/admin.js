@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+
 import { Template } from 'meteor/templating';
 
 import { Girls } from '../api/girls.js';
@@ -10,7 +12,7 @@ Template.admin.helpers({
   },
 });
 
-Template.body.events({
+Template.admin.events({
   'submit .new-girl'(event) {
     // Prevent default browser form submit
     event.preventDefault();

@@ -1,5 +1,7 @@
 /* CSS declarations go here */
-
+body{
+	margin: 10px;
+}
 .header_image{
 	height: 120px;
 	display: block;

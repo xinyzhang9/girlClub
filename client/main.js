@@ -1,12 +1,19 @@
-import '../imports/ui/body.js';
+import '../imports/ui/admin.js';
 import { Girls } from '../imports/api/girls.js';
+import '../imports/startup/accounts-config.js';
 Router.route('/',{
 	name: 'home',
 	template: 'home'
-})
+});
+
 Router.route('/admin',{
 	name: 'admin',
     template: 'admin'
+});
+
+Router.route('/myclub',{
+	name: 'myclub',
+    template: 'myclub'
 });
 
 Router.configure({
