@@ -36,6 +36,7 @@
           <th>Height</th>
           <th>Nickname</th>
           <th>Birthplace</th>
+          <th>Action</th> 
         </tr>
       {{#each girls}}
         {{> girl}}
@@ -58,6 +59,7 @@
     <td>{{height}}</td>
     <td>{{nickname}}</td>
     <td>{{birthplace}}</td>
+    <td><button class="delete">&times;</button></td>
   </tr>
 </template>
 
@@ -179,19 +181,32 @@
         <th>Location</th>
         <th>Members</th>
         <th>Staffs</th>
-        <th>Contracts</th>        
+        <th>Contracts</th> 
+        <th>Action</th>       
       </tr>
-      <tr>
-        <td>{{myclub.clubname}}</td>
-        <td>{{myclub.actionPoints}}</td>
-        <td>{{myclub.coins}}</td>
-        <td>{{myclub.location}}</td>
-        <td>{{myclub.members.length}}</td>
-        <td>{{myclub.staffs.length}}</td>
-        <td>{{myclub.contracts.length}}</td>
-      </tr>
+      {{#each myclub}}
+        {{> findmyclub}}
+      {{/each}}
     </table>
+
+    <div class="btn-group" role="group" aria-label="...">
+    <button type="button" class="btn btn-danger">Scout</button>
+    <button type="button" class="btn btn-default">Training</button>
+    <button type="button" class="btn btn-success">Perform</button>
+  </div>
     
   </div>
 
+</template>
+<template name = "findmyclub">
+      <tr>
+        <td>{{clubname}}</td>
+        <td>{{actionPoints}}</td>
+        <td>{{coins}}</td>
+        <td>{{location}}</td>
+        <td>{{members.length}}</td>
+        <td>{{staffs.length}}</td>
+        <td>{{contracts.length}}</td>
+        <td><button class="deleteClub">&times;</button></td>
+      </tr>
 </template>

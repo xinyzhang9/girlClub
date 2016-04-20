@@ -35,26 +35,10 @@ Template.admin.events({
     const rating = target.rating.value;
 
  
-    // Insert a task into the collection
-    Girls.insert({
-      name,
-      image,
-      age,
-      height,
-      nickname,
-      birthplace,
-      sing,
-      dance,
-      act,
-      instrument,
-      leadership,
-      potential,
-      temper,
-      rating,
-      fans : 0,
-      createdAt: new Date(), // current time
-    });
- 
+    // Insert a girl into the collection
+    Meteor.call('girls.insert', name, image, age, height, nickname, birthplace, 
+    	sing, dance, act, instrument, leadership, potential, temper, rating);
+
     // Clear form
     target.name.value = '';
     target.image.value = '';
@@ -64,6 +48,8 @@ Template.admin.events({
     target.birthplace.value = '';
 
     return false;
-
   },
+  'click .delete'(){
+  	Meteor.call('girls.remove', this._id);
+  }
 });
