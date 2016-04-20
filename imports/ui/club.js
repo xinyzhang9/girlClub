@@ -6,6 +6,8 @@ import { Girls } from '../api/girls.js';
 
 import { Clubs } from '../api/clubs.js';
 
+import { UserGirls } from '../api/usergirls.js';
+
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import '../startup/accounts-config.js';
@@ -21,6 +23,9 @@ Template.myclub.helpers({
   },
   hasNoClub(){
   	return Clubs.findOne({owner : Meteor.userId()}) === undefined;
+  },
+  oneGirl(){
+  	return Girls.findOne({potential : "96"});
   }
 });
 
@@ -49,5 +54,39 @@ Template.myclub.events({
     	console.log("club created!")
     	return false;
 	},
+
+	'submit .new-member'(event){
+		event.preventDefault();
+
+		const target = event.target;
+		const id = target.id.value;
+
+		var girl = Girls.findOne({_id : id});
+
+		UserGirls.insert({
+			name : girl.name,
+	      	image : girl.image,
+	        age : girl.age,
+	      	height : girl.height,
+	      	nickname : girl.nickname,
+	      	birthplace : girl.birthplace,
+	      	sing : girl.sing,
+	      	dance : girl.dance,
+	      	act : girl.act,
+	      	instrument : girl.instrument,
+	      	leadership : girl.leadership,
+	      	potential : girl.potential,
+	      	temper : girl.temper,
+	      	rating : girl.rating,
+	      	fans : 0,
+	      	salary : 20,
+	      	fatigue : 0,
+	      	owner : Meteor.userId(),
+    		username : Meteor.user().username,
+	      	createdAt: new Date(), // current time
+		})
+		console.log("girl created!")
+    	return false;
+	}
 
 })
