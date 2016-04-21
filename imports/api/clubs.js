@@ -13,7 +13,7 @@ Meteor.methods({
  
     Clubs.insert({
     	clubname,
-    	coins,
+    	coins : parseInt(coins),
     	location,
     	members : [],
     	staffs: [],
@@ -55,7 +55,30 @@ Meteor.methods({
        { owner : Meteor.userId() },
        { $pop: { staffs: 1 } }
     )
-  }
+  },
+  //temp methods! not logically correct
+  'clubs.removeMember'(memberID){
+    Clubs.update(
+       { owner : Meteor.userId() },
+       { $pop: { members: 1 } }
+    )
+  },
+
+  'clubs.addActionPoints'(){
+    Clubs.update(
+       { owner : Meteor.userId() },
+       { $inc: { actionPoints: 1 } }
+    )
+  },
+
+  'clubs.addCoins'(){
+    Clubs.update(
+       { owner : Meteor.userId() },
+       { $inc: { coins: 1000 } }
+    )
+  },
+
+
 
 
 });

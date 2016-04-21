@@ -15,6 +15,8 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import '../startup/accounts-config.js';
  
 import './body.html';
+
+import './content.html';
  
 Template.myclub.helpers({
   myclub(){
@@ -84,6 +86,7 @@ Template.myclub.events({
 
 	'click .deleteClub'(){
 		Meteor.call('clubs.remove', this._id);
+		Meteor.call('usergirls.removeClub');
 	},
 
 	'submit .new-member'(event){
@@ -104,7 +107,8 @@ Template.myclub.events({
 		}
 		if(dup === 0){
 			Meteor.call('usergirls.insert',girl);
-			Meteor.call('clubs.newMember', array[array.length-1]);
+			var array2 = UserGirls.find({owner : Meteor.userId()}).fetch();
+			Meteor.call('clubs.newMember', array2[array2.length-1]);
 		}
 		
 	},
@@ -123,6 +127,14 @@ Template.myclub.events({
 		if(dup === 0)
 			Meteor.call('clubs.newStaff',staff);
 		
+	},
+
+	'click .addActionPoints'(event){
+		Meteor.call('clubs.addActionPoints');
+	},
+
+	'click .addCoins'(event){
+		Meteor.call('clubs.addCoins');
 	},
 
 })

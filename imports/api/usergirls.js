@@ -13,6 +13,7 @@ Meteor.methods({
     }
  
     UserGirls.insert({
+    		original_id : girl._id,
 			name : girl.name,
 	      	image : girl.image,
 	        age : girl.age,
@@ -37,8 +38,10 @@ Meteor.methods({
 		console.log("girl created!")
     	return false;
   },
-  'usergirls.remove'(girlID) {
-    check(girlID, String);
-    Girls.remove(girlID);
+  'usergirls.remove'(name) {
+    UserGirls.remove({$and:[{owner : Meteor.userId()},{name : name}]});
+  },
+  'usergirls.removeClub'() {
+    UserGirls.remove({owner : Meteor.userId()});
   },
 });

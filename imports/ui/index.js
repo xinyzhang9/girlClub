@@ -62,5 +62,16 @@ Template.content.helpers({
 Template.content.events({
   'click .releaseStaff'(event){
     Meteor.call('clubs.removeStaff', this._id);
-  }
+
+  },
+  'submit .releaseMember'(event){
+    event.preventDefault();
+    const target = event.target;
+    const id = target.id.value;
+    const name = target.name.value;
+    Meteor.call('clubs.removeMember', id);
+    console.log(this._id);
+    Meteor.call('usergirls.remove', name);
+  },
+
 })
