@@ -19,3 +19,21 @@ body{
 .center{
 	text-align: center;
 }
+
+.todaystar{
+	text-align: center;
+	margin: 0 auto;
+}
+img.todaystar{
+	margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    width: 200px;
+    border: 2px solid orange;
+    border-radius: 5%;
+    padding: 10px;
+    box-shadow: 10px 10px 5px #888888;
+}
+table.club_staff tr{
+	padding: 10px;
+}

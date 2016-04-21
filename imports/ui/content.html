@@ -1,9 +1,27 @@
 <template name="content">
-  <h3 class="page-header" style="text-transform: capitalize;">{{this.contentType}}</h3>
+  	<h3 class="page-header" style="text-transform: capitalize;">{{this.contentType}}</h3>
 
-  <ul class="list-group">
-    {{#each this.items}}
-      <li class="list-group-item"><strong>{{name}}</strong></li>
-    {{/each}}
-  </ul>
+  	{{#if isMembers}}
+  		<ul class="list-group">
+	   		{{#each this.items}}
+	      	<li class="list-group-item"><strong>{{name}}</strong> | cost {{salary}}</li>
+	    	{{/each}}
+	  	</ul>
+  	{{/if}}
+
+  	{{#if isStaffs}}
+  		<ul class="list-group">
+	   		{{#each this.items}}
+	      	<li class="list-group-item"><strong>{{name}}</strong> | cost {{salary}} | <button class = "releaseStaff btn btn-danger">release</button></li>
+	    	{{/each}}
+	  	</ul>
+  	{{/if}}
+	
+	{{#if isContracts}}
+  		<ul class="list-group">
+	   		{{#each this.items}}
+	      	<li class="list-group-item"><strong>{{name}}</strong></li>
+	    	{{/each}}
+	  	</ul>
+  	{{/if}}
 </template>

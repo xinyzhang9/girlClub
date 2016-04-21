@@ -194,7 +194,12 @@
     </table>
 
     {{> index}}
-    
+    <hr>
+
+    {{> scout}}
+    <hr>
+
+    {{> club_staff}}
   </div>
 
 </template>
@@ -213,9 +218,9 @@
 
 <template name="index">
   <ul class="nav nav-pills">
-    <li data-template="books" role="presentation" class="active"><a href="#">Books</a></li>
-    <li data-template="movies" role="presentation"><a href="#">Movies</a></li>
-    <li data-template="games" role="presentation"><a href="#">Games</a></li>
+    <li data-template="members" role="presentation" class="active"><a href="#">Members</a></li>
+    <li data-template="staffs" role="presentation"><a href="#">Staffs</a></li>
+    <li data-template="contracts" role="presentation"><a href="#">Contracts</a></li>
   </ul>
   {{> Template.dynamic template="content" data=tabData}}
 </template>
@@ -249,3 +254,46 @@
       {{/each}}
     </table>
   </template>
+
+<template name = "scout">
+  <div>
+    <div class = "todaystar">
+      <strong>Today's Special Scout</strong>
+    </div>
+    <div class = "todaystar">
+      <a href = "/member/{{oneGirl._id}}"><img class = "todaystar" src="http://www.snh48.com/images/member/{{oneGirl.image}}.jpg" alt=""></a>
+    </div>
+    <div class = "todaystar">
+      <strong>{{oneGirl.name}}</strong>
+    </div>
+    <div class = "todaystar">
+      <form class = "new-member">
+        <input type="hidden" name = "id" value = "{{oneGirl._id}}">
+        <input type="submit" class = "btn btn-danger" value = "Recruit ({{oneGirlCost}} coins)">
+      </form>
+    </div>
+  </div>
+</template>
+
+<template name = "club_staff">
+  <div class="table-responsive">
+    <table class = "table club_staff">
+      <tr>
+          <th>Name</th>
+          <th>Level</th>
+          <th>Job</th>
+          <th>Salary</th>
+          <th>Action</th> 
+        </tr>
+      {{#each staffs}}
+        <tr>      
+          <td>{{name}}</td>
+          <td>{{level}}</td>
+          <td>{{job}}</td>
+          <td>{{salary}}</td>
+          <td><button class="new-staff btn btn-default">Recruit</button></td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+</template>

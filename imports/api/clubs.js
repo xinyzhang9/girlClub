@@ -32,5 +32,31 @@ Meteor.methods({
     check(clubID, String);
     Clubs.remove(clubID);
   },
+
+  'clubs.newMember'(girl){
+    Clubs.update(
+       { owner : Meteor.userId() },
+       { $push: { members: girl } }
+    )
+    console.log("member added");
+  },
+
+  'clubs.newStaff'(staff){
+    Clubs.update(
+       { owner : Meteor.userId() },
+       { $push: { staffs: staff } }
+    )
+    console.log("staff added");
+  },
+
+  //temp methods! not logically correct
+  'clubs.removeStaff'(staffID){
+    Clubs.update(
+       { owner : Meteor.userId() },
+       { $pop: { staffs: 1 } }
+    )
+  }
+
+
 });
 

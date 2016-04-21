@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
  
-export const Girls = new Mongo.Collection('usergirls');
+export const UserGirls = new Mongo.Collection('usergirls');
 
 Meteor.methods({
   'usergirls.insert'(girl) {

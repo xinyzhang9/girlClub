@@ -15,7 +15,7 @@ import './body.html';
 import './content.html';
 
 Template.index.onCreated( function() {
-  this.currentTab = new ReactiveVar( "books" );
+  this.currentTab = new ReactiveVar( "members" );
 });
 
 Template.index.helpers({
@@ -26,12 +26,10 @@ Template.index.helpers({
     var tab = Template.instance().currentTab.get();
 
     var data = {
-      "books": Girls.find(),
-      "movies": [],
-      "games": [
-        { "name": "Grand Theft Auto V", "creator": "Rockstar Games" },
+      "members": Clubs.findOne({owner : Meteor.userId()}).members,
+      "staffs": Clubs.findOne({owner : Meteor.userId()}).staffs,
+      "contracts": Clubs.findOne({owner : Meteor.userId()}).contracts,
         
-      ]
     };
 
     return { contentType: tab, items: data[ tab ] };
@@ -48,3 +46,21 @@ Template.index.events({
     template.currentTab.set( currentTab.data( "template" ) );
   }
 });
+
+Template.content.helpers({
+  isMembers(){
+    return this.contentType === "members";
+  },
+  isStaffs(){
+    return this.contentType === "staffs";
+  },
+  isContracts(){
+    return this.contentType === "contracts";
+  },
+});
+
+Template.content.events({
+  'click .releaseStaff'(event){
+    Meteor.call('clubs.removeStaff', this._id);
+  }
+})
