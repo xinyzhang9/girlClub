@@ -29,6 +29,9 @@ Template.index.helpers({
       "members": Clubs.findOne({owner : Meteor.userId()}).members,
       "staffs": Clubs.findOne({owner : Meteor.userId()}).staffs,
       "contracts": Clubs.findOne({owner : Meteor.userId()}).contracts,
+      "songs" : [{"name" : "Summer Sounds Good!"},
+                {"name" : "Give Me Five!"}],
+
         
     };
 
@@ -56,6 +59,9 @@ Template.content.helpers({
   },
   isContracts(){
     return this.contentType === "contracts";
+  },
+  isSongs(){
+    return this.contentType === "songs";
   },
 });
 

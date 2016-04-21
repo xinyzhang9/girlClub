@@ -33,6 +33,9 @@ Meteor.methods({
 	      	fatigue : 0,
 	      	owner : Meteor.userId(),
     		username : Meteor.user().username,
+    		exp : 0,
+    		level : 1,
+    		role : "member",
 	      	createdAt: new Date(), // current time
 		})
 		console.log("girl created!")

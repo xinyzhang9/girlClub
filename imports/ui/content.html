@@ -6,6 +6,8 @@
   				<tr>
   					<th>Image</th>
   					<th>Name</th>
+  					<th>Level</th>
+  					<th>Exp</th>
   					<th>Salary</th>
   					<th>Fans</th>
   					<th>Fatigue</th>
@@ -20,6 +22,8 @@
 		          </a>
 		        </td>
 	   			<td><strong>{{name}}</strong></td>
+	   			<td>{{level}}</td>
+	   			<th>{{exp}}</th>
 	   			<td>{{salary}}</td>
 	   			<td>{{fans}}</td>
 	   			<td>{{fatigue}}</td>
@@ -53,6 +57,16 @@
 	    	{{/each}}
 	  	</ul>
   	{{/if}}
+
+  	{{#if isSongs}}
+  		<ul class="list-group">
+	   		{{#each this.items}}
+	      	<li class="list-group-item"><strong>{{name}}</strong></li>
+	    	{{/each}}
+	  	</ul>
+  	{{/if}}
+
+
 </template>
 
 <template name = "scout">

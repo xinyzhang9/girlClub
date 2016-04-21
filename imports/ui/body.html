@@ -69,7 +69,10 @@
 
 <template name = 'home'>
   <div>
-    <h4 class = "home">Welcome to the home page.</h4>
+    <h4 class = "home">Welcome to the home page!</h4>
+    <div class = "center">
+      <img class = "home_image" src="images/summer.jpg" alt="">
+    </div>
   </div>
 </template>
 
@@ -215,6 +218,7 @@
     <li data-template="members" role="presentation" class="active"><a href="#">Members</a></li>
     <li data-template="staffs" role="presentation"><a href="#">Staffs</a></li>
     <li data-template="contracts" role="presentation"><a href="#">Contracts</a></li>
+    <li data-template="songs" role="presentation"><a href="#">Songs</a></li>
   </ul>
   {{> Template.dynamic template="content" data=tabData}}
 </template>
