@@ -3,6 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import { Girls } from '../api/girls.js';
+
+import { Staffs } from '../api/staffs.js';
  
 import './body.html';
  
@@ -10,7 +12,14 @@ Template.admin.helpers({
   girls() {
     return Girls.find({}, { sort: { createdAt: -1 } });
   },
+  
 });
+
+Template.admin_staffs.helpers({
+	staffs(){
+  	return Staffs.find({}, { sort: { createdAt: 1 } });
+  },
+})
 
 Template.admin.events({
   'submit .new-girl'(event) {
@@ -51,5 +60,30 @@ Template.admin.events({
   },
   'click .delete'(){
   	Meteor.call('girls.remove', this._id);
-  }
+  },
+
+  'submit .new-staff'(event){
+  	// Prevent default browser form submit
+    event.preventDefault();
+
+    const target = event.target;
+    const name = target.name.value;
+    const level = target.level.value;
+    const job = target.job.value;
+    const salary = target.salary.value;
+
+    Meteor.call('staffs.insert', name, level, job, salary);
+
+    //Clear form
+    target.name.value = '';
+    target.level.value= '';
+    target.job.value = '';
+    target.salary.value = '';
+
+    return false;
+  },
+  'click .deleteStaff'(){
+  	Meteor.call('staffs.remove', this._id);
+  },
+
 });

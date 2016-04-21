@@ -42,6 +42,10 @@
         {{> girl}}
       {{/each}}
     </table>
+
+    <hr>
+
+    {{> admin_staffs}}
   </template>
 
 <template name="girl">   
@@ -189,11 +193,7 @@
       {{/each}}
     </table>
 
-    <div class="btn-group" role="group" aria-label="...">
-    <button type="button" class="btn btn-danger">Scout</button>
-    <button type="button" class="btn btn-default">Training</button>
-    <button type="button" class="btn btn-success">Perform</button>
-  </div>
+    {{> index}}
     
   </div>
 
@@ -210,3 +210,42 @@
         <td><button class="deleteClub">&times;</button></td>
       </tr>
 </template>
+
+<template name="index">
+  <ul class="nav nav-pills">
+    <li data-template="books" role="presentation" class="active"><a href="#">Books</a></li>
+    <li data-template="movies" role="presentation"><a href="#">Movies</a></li>
+    <li data-template="games" role="presentation"><a href="#">Games</a></li>
+  </ul>
+  {{> Template.dynamic template="content" data=tabData}}
+</template>
+
+  <template name = "admin_staffs">
+    <form class="new-staff">
+      <h4>staffs - for admin only</h4>
+        <input type="text" name="name" placeholder="name" />
+        <input type="text" name="level" placeholder="level" />
+        <input type="text" name="job" placeholder="job" />
+        <input type="text" name="salary" placeholder="salary" />
+        <input type="submit" value ="submit" class = "btn btn-success">
+      </form>
+ 
+    <table class = "table list">
+      <tr>
+          <th>Name</th>
+          <th>Level</th>
+          <th>Job</th>
+          <th>Salary</th>
+          <th>Action</th> 
+        </tr>
+      {{#each staffs}}
+        <tr>      
+          <td>{{name}}</td>
+          <td>{{level}}</td>
+          <td>{{job}}</td>
+          <td>{{salary}}</td>
+          <td><button class="deleteStaff">&times;</button></td> 
+        </tr>
+      {{/each}}
+    </table>
+  </template>

@@ -53,6 +53,6 @@ Template.myclub.events({
 
 		Meteor.call('usergirl.insert',girl);
 		
-	}
+	},
 
 })

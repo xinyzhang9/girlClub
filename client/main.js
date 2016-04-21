@@ -1,8 +1,10 @@
 import '../imports/ui/admin.js';
 import '../imports/ui/club.js';
+import '../imports/ui/index.js';
 import { Girls } from '../imports/api/girls.js';
 import { UserGirls } from '../imports/api/usergirls.js';
 import { Clubs } from '../imports/api/clubs.js';
+import { Staffs } from '../imports/api/staffs.js';
 import '../imports/startup/accounts-config.js';
 Router.route('/',{
 	name: 'home',
