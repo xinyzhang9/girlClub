@@ -29,8 +29,7 @@ Template.index.helpers({
       "members": Clubs.findOne({owner : Meteor.userId()}).members,
       "staffs": Clubs.findOne({owner : Meteor.userId()}).staffs,
       "contracts": Clubs.findOne({owner : Meteor.userId()}).contracts,
-      "songs" : [{"name" : "Summer Sounds Good!"},
-                {"name" : "Give Me Five!"}],
+      "songs" : Clubs.findOne({owner : Meteor.userId()}).songs,
 
         
     };

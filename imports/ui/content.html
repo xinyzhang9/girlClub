@@ -59,11 +59,36 @@
   	{{/if}}
 
   	{{#if isSongs}}
-  		<ul class="list-group">
+  		<table class = "table">
+  			<tr>
+  				<th>Name</th>
+  				<th>Image</th>
+  				<th>Level</th>
+  				<th>Progress</th>
+  				<th>Performers</th>
+  				<th>Center</th>
+  				<th>Action</th>
+  			</tr>
+  			
 	   		{{#each this.items}}
-	      	<li class="list-group-item"><strong>{{name}}</strong></li>
+	   		<tr>
+	   			<td><strong>{{name}}</strong></td>
+	   			<td><img src="images/{{tag}}.jpg" class = "song_image" alt=""></td>
+	   			<td>{{level}}</td>
+	   			<td>{{curPoints}} / {{actionPoints}}</td>
+	   			<td>{{members.length}} / {{minNumber}}</td>
+	   			<td>{{center}}</td>
+	   			<td><form class = "practice">
+	      			<input type="hidden" name = "name" value = "{{name}}">
+	      			<input type="hidden" name = "id" value = "{{_id}}">
+	      			<input type="submit" class = "btn btn-warning" value = "Practice">
+	      		</form></td>
+	   		</tr>
+	     
 	    	{{/each}}
-	  	</ul>
+	    	</table>
+	    	<hr>
+	    	{{> club_song}}
   	{{/if}}
 
 
@@ -110,4 +135,32 @@
       {{/each}}
     </table>
   </div>
+</template>
+
+<template name = "club_song">
+	<h4>Available songs</h4>
+	<table class = "table">
+      <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Level</th>
+          <th>Cost</th>
+          <th>Required Points</th>
+          <th>Required Member</th>
+          <th>Minimum Performers</th>
+          <th>Action</th> 
+        </tr>
+      {{#each songs}}
+        <tr>      
+          <td><strong>{{name}}</strong></td>
+          <td><img src="images/{{tag}}.jpg" class = "song_image" alt=""></td>
+          <td>{{level}}</td>
+          <td>{{cost}}</td>
+          <td>{{actionPoints}}</td>
+          <td>{{requiredMember}}</td>
+          <td>{{minNumber}}</td>
+          <td><button class="new-song btn btn-default">Learn</button></td> 
+        </tr>
+      {{/each}}
+    </table>
 </template>

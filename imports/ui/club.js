@@ -10,6 +10,10 @@ import { UserGirls } from '../api/usergirls.js';
 
 import { Staffs } from '../api/staffs.js';
 
+import { Songs } from '../api/songs.js';
+
+import { UserSongs } from '../api/usersongs.js';
+
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import '../startup/accounts-config.js';
@@ -34,6 +38,12 @@ Template.myclub.helpers({
 Template.club_staff.helpers({
 	staffs(){
   	return Staffs.find({}, { sort: { level: 1 } });
+  },
+})
+
+Template.club_song.helpers({
+	songs(){
+  	return Songs.find({}, { sort: { level: 1 } });
   },
 })
 
@@ -87,6 +97,7 @@ Template.myclub.events({
 	'click .deleteClub'(){
 		Meteor.call('clubs.remove', this._id);
 		Meteor.call('usergirls.removeClub');
+		Meteor.call('usersongs.removeClub');
 	},
 
 	'submit .new-member'(event){
@@ -152,5 +163,25 @@ Template.myclub.events({
 	'click .addCoins'(event){
 		Meteor.call('clubs.addCoins');
 	},
+
+	'click .new-song'(event){
+		var song = Songs.findOne({_id : this._id});
+		var array = UserSongs.find({owner : Meteor.userId()}).fetch();
+		console.log(array);
+		var dup = 0;
+		for(var x in array){
+			if(array[x].name === song.name){
+				console.log("can't add duplicate song!");
+				dup = 1;
+			}
+		}
+		if(dup === 0){
+			Meteor.call('usersongs.insert',song);
+			var array2 = UserSongs.find({owner : Meteor.userId()}).fetch();
+			Meteor.call('clubs.newSong', array2[array2.length-1]);
+			//deduct cost from club
+			Meteor.call('clubs.cost',song.cost);
+		}
+	}
 
 })

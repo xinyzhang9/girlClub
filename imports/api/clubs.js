@@ -50,6 +50,14 @@ Meteor.methods({
     console.log("staff added");
   },
 
+  'clubs.newSong'(song){
+    Clubs.update(
+       { owner : Meteor.userId() },
+       { $push: { songs: song } }
+    )
+    console.log("song added");
+  },
+
   //temp methods! not logically correct
   'clubs.removeStaff'(staffID){
     Clubs.update(
