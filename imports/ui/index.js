@@ -68,13 +68,6 @@ Template.content.helpers({
   isTraining(){
     return this.contentType === "training";
   },
-  freeMembers(){
-    return UserGirls.find({$and:[{owner : Meteor.userId()},{busy : 0}]}).fetch();
-  },
-  membersInSong(){
-    //this._id is the song's id
-    return UserSongs.findOne({_id : this._id}).members;
-  }
 });
 
 Template.content.events({
@@ -91,10 +84,21 @@ Template.content.events({
     console.log(this._id);
     Meteor.call('usergirls.remove', name);
   },
+})
 
+Template.list_song.helpers({
+  freeMembers(){
+    return UserGirls.find({$and:[{owner : Meteor.userId()},{busy : 0}]}).fetch();
+  },
+  membersInSong(){
+    //this._id is the song's id
+    return UserSongs.findOne({_id : this._id}).members;
+  },
+})
+Template.list_song.events({
   'click .joinSong'(event, template){
-    var song = template.data.items[1];
-    console.log(song);
+    var song = template.data;
+    console.log(template);
     var girl = UserGirls.findOne({_id:this._id});
     song.members.push(girl);
     Meteor.call('usersongs.addMember',song._id, girl);
@@ -103,7 +107,7 @@ Template.content.events({
   },
 
   'click .quitSong'(event, template){
-    var song = template.data.items[1];
+    var song = template.data;
     console.log(template.data);
     var girl = UserGirls.findOne({_id:this._id});
     song.members.push(girl);
@@ -111,8 +115,18 @@ Template.content.events({
     Meteor.call('usergirls.setBusy',this._id,0);
     console.log(this._id + "quited the song");
   },
-  
 
+  'click .practice'(event){
+    console.log(this._id); //song's id
+    var song = UserSongs.findOne({_id:this._id});
+    var club = Clubs.findOne({owner : Meteor.userId()});
+    if(club.actionPoints >= 1 && song.members.length >= song.minNumber){
+      Meteor.call('clubs.spendActionPoints',1);
+      Meteor.call('usersongs.addCurPoints',this._id,1);
+    }else{
+      console.log("make sure 1. actionPoints >= 1; 2. enough members to practice this song")
+    }
+  }
 })
 
 Template.club_member.events({

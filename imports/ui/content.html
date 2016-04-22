@@ -59,49 +59,9 @@
   	{{/if}}
 
   	{{#if isSongs}}
-  		<table class = "table">
-  			<tr>
-  				<th>Name</th>
-  				<th>Image</th>
-  				<th>Level</th>
-  				<th>Progress</th>
-  				<th>Performers</th>
-  				<th>Center</th>
-  				<th>Action</th>
-  			</tr>
-  			
 	   		{{#each this.items}}
-	   		<tr>
-	   			<td><strong>{{name}}</strong></td>
-	   			<td><img src="images/{{tag}}.jpg" class = "song_image" alt=""></td>
-	   			<td>{{level}}</td>
-	   			<td>{{curPoints}} / {{actionPoints}}</td>
-	   			<td>{{members.length}} / {{minNumber}}</td>
-	   			<td>{{center}}</td>
-	   			<td><form class = "practice">
-	      			<input type="hidden" name = "name" value = "{{name}}">
-	      			<input type="hidden" name = "id" value = "{{_id}}">
-	      			<input type="submit" class = "btn btn-warning" value = "Practice">
-	      		</form></td>
-	   		</tr>
-	   		<tr>
-	   			<div>
-	   				<h5>Availabe Members to practice this song :</h5>
-	   				{{#each freeMembers}}
-	   					<img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header2_image joinSong">
-	   				{{/each}}
-
-	   			</div>
-	   			<div>
-	   				<h5>Members currently practicing this song : </h5>
-	   				{{#each membersInSong}}
-	   					<img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header2_image quitSong">
-	   				{{/each}}
-	   			</div>
-	   		</tr>
-	     
+	   			{{> list_song}}
 	    	{{/each}}
-	    	</table>
 	    	<hr>
 	    	{{> club_song}}
   	{{/if}}
@@ -223,4 +183,36 @@
 	     
 	    {{/each}}
 	</table>
+</template>
+
+<template name = "list_song">
+	<table class = "table">
+  		<tr>
+  			<th>Name</th>
+  			<th>Level</th>
+  			<th>Progress</th>
+  			<th>Performers</th>
+  			<th>Action</th>
+  		</tr>
+		<tr>
+		   	<td><img src="images/{{tag}}.jpg" class = "song_image" alt=""></td>
+		  	<td>{{level}}</td>
+		   	<td>{{curPoints}} / {{actionPoints}}</td>
+		   	<td>{{members.length}} / {{minNumber}}</td>
+		   	<td><button class = "practice btn btn-warning">practice</button></td>
+		</tr>
+	</table>
+	<div>
+	   	<h5>Availabe Members to practice this song :</h5>
+	   	{{#each freeMembers}}
+	   		<img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header2_image joinSong">
+	   	{{/each}}
+	</div>
+	<div>
+	    <h5>Members currently practicing this song : </h5>
+	   	{{#each membersInSong}}
+	   		<img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header2_image quitSong">
+	   	{{/each}}
+	</div>
+	<hr>
 </template>

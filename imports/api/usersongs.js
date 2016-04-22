@@ -16,12 +16,12 @@ Meteor.methods({
     		original_id : song._id,
 			name : song.name,
 	      	tag : song.tag,
-	      	level : song.level,
-	      	cost : song.cost,
+	      	level : parseInt(song.level),
+	      	cost : parseInt(song.cost),
 	      	curPoints : 0, //current actionPoints
-	      	actionPoints : song.actionPoints,
+	      	actionPoints : parseInt(song.actionPoints),
 	      	requiredMember : song.requiredMember,
-	      	minNumber : song.minNumber,
+	      	minNumber : parseInt(song.minNumber),
 	      	center : null, //center singer
 	      	members : [], //singers
 	      	owner : Meteor.userId(),
@@ -55,5 +55,24 @@ Meteor.methods({
        { $set: { members: filtered } },
     );
   },
+  'usersongs.addCurPoints'(songID,val){
+  	var song = UserSongs.findOne({ _id : songID });
+  	if(song.curPoints + val >= song.actionPoints){
+  		UserSongs.update(
+	       { _id : songID },
+	       { $inc: { level: 1 } },
+	    );
+	    UserSongs.update(
+	       { _id : songID },
+	       { $set: { curPoints: song.curPoints + val - song.actionPoints } },
+	    );
+  	}else{
+  		UserSongs.update(
+	       { _id : songID },
+	       { $inc: { curPoints: val } },
+	    );
+  	}
+  	
+  }
 
 });
