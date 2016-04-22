@@ -88,6 +88,47 @@ Template.content.events({
 Template.club_member.events({
   'click .addSing'(event){
     console.log(this._id);
-    Meteor.call('usergirls.addSing',this._id,1);
-  }
+    var club = Clubs.findOne({owner : Meteor.userId()});
+    var girl = UserGirls.findOne({_id : this._id});
+    if(club.actionPoints >= 1 && girl.fatigue <= 90){
+      Meteor.call('usergirls.addSing',this._id,1);
+      Meteor.call('usergirls.addFatigue',this._id,10);
+    }else{
+      console.log("not enough coins or the girl is too tired!");
+    }
+  },
+  'click .addDance'(event){
+    console.log(this._id);
+    var club = Clubs.findOne({owner : Meteor.userId()});
+    var girl = UserGirls.findOne({_id : this._id});
+    if(club.actionPoints >= 1 && girl.fatigue <= 90){
+      Meteor.call('usergirls.addDance',this._id,1);
+      Meteor.call('usergirls.addFatigue',this._id,10);
+    }else{
+      console.log("not enough coins or the girl is too tired!");
+    }
+  },
+  'click .addAct'(event){
+    console.log(this._id);
+    var club = Clubs.findOne({owner : Meteor.userId()});
+    var girl = UserGirls.findOne({_id : this._id});
+    if(club.actionPoints >= 1 && girl.fatigue <= 90){
+      Meteor.call('usergirls.addAct',this._id,1);
+      Meteor.call('usergirls.addFatigue',this._id,10);
+    }else{
+      console.log("not enough coins or the girl is too tired!");
+    }
+  },
+  'click .addInstrument'(event){
+    console.log(this._id);
+    var club = Clubs.findOne({owner : Meteor.userId()});
+    var girl = UserGirls.findOne({_id : this._id});
+    if(club.actionPoints >= 1 && girl.fatigue <= 90){
+      Meteor.call('usergirls.addInstrument',this._id,1);
+      Meteor.call('usergirls.addFatigue',this._id,10);
+    }else{
+      console.log("not enough coins or the girl is too tired!");
+    }
+  },
+
 })

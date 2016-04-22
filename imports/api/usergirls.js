@@ -48,10 +48,34 @@ Meteor.methods({
   'usergirls.removeClub'() {
     UserGirls.remove({owner : Meteor.userId()});
   },
+  'usergirls.addFatigue'(id,val){
+  	UserGirls.update(
+       { _id : id },
+       { $inc: { fatigue: val } },
+    );
+  },
   'usergirls.addSing'(id,val){
   	UserGirls.update(
        { _id : id },
        { $inc: { sing: val } },
+    );
+  },
+  'usergirls.addDance'(id,val){
+  	UserGirls.update(
+       { _id : id },
+       { $inc: { dance: val } },
+    );
+  },
+  'usergirls.addAct'(id,val){
+  	UserGirls.update(
+       { _id : id },
+       { $inc: { act: val } },
+    );
+  },
+  'usergirls.addInstrument'(id,val){
+  	UserGirls.update(
+       { _id : id },
+       { $inc: { instrument: val } },
     );
   },
 });

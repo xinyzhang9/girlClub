@@ -130,10 +130,6 @@ Template.myclub.events({
 			}
 		}
 		if(dup === 0){
-			Meteor.call('usergirls.insert',girl);
-			var array2 = UserGirls.find({owner : Meteor.userId()}).fetch();
-			Meteor.call('clubs.newMember', array2[array2.length-1]);
-			//deduct cost from club
 			var cost = 0;
 			if(girl.rating === "S"){
 	  			cost = 100;
@@ -144,9 +140,20 @@ Template.myclub.events({
 	  		}else{
 	  			cost = 10;
 	  		}
-			Meteor.call('clubs.cost',cost);
-			//spend 2 actionPoints.
-			// Meteor.call('clubs.spendActionPoints',2);
+
+	  		var club = Clubs.findOne({owner : Meteor.userId()});
+	  		if(club.actionPoints >= 2 && club.coins >= cost){
+	  			Meteor.call('usergirls.insert',girl);
+				var array2 = UserGirls.find({owner : Meteor.userId()}).fetch();
+				Meteor.call('clubs.newMember', array2[array2.length-1]);
+				//deduct cost from club
+				Meteor.call('clubs.cost',cost);
+				// spend 2 actionPoints.
+				Meteor.call('clubs.spendActionPoints',2);
+	  		}else{
+	  			console.log("not enough actionPoints or coins!")
+	  		}
+	  		
 		}
 		
 	},
@@ -163,9 +170,14 @@ Template.myclub.events({
 			}
 		}
 		if(dup === 0){
-			Meteor.call('clubs.newStaff',staff);
-			var cost = staff.salary;
-			Meteor.call('clubs.cost',cost);
+			if(Clubs.findOne({owner : Meteor.userId()}).coins >= staff.salary){
+				Meteor.call('clubs.newStaff',staff);
+				var cost = staff.salary;
+				Meteor.call('clubs.cost',cost);
+			}else{
+				console.log("not enough coins!");
+			}
+			
 		}
 			
 		
