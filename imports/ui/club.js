@@ -43,7 +43,7 @@ Template.scout.helpers({
   		var array = Girls.find().fetch();
 		var d = new Date();
 		//today's star
-		var s = Math.round(d.getTime()/1000/3600/24);
+		var s = Math.round(d.getTime()/1000/3600/1);
 		console.log(s);
 		var index = s % array.length;
 		var element = array[index];
@@ -53,7 +53,7 @@ Template.scout.helpers({
   		var array = Girls.find().fetch();
 		var d = new Date();
 		//today's star
-		var s = Math.round(d.getTime()/1000/3600/24);
+		var s = Math.round(d.getTime()/1000/3600/1);
 		console.log(s);
 		var index = s % array.length;
 		var element = array[index];
@@ -109,6 +109,18 @@ Template.myclub.events({
 			Meteor.call('usergirls.insert',girl);
 			var array2 = UserGirls.find({owner : Meteor.userId()}).fetch();
 			Meteor.call('clubs.newMember', array2[array2.length-1]);
+			//deduct cost from club
+			var cost = 0;
+			if(girl.rating === "S"){
+	  			cost = 100;
+	  		}else if(girl.rating === "A"){
+	  			cost = 50;
+	  		}else if(girl.rating === "B"){
+	  			cost = 30;
+	  		}else{
+	  			cost = 10;
+	  		}
+			Meteor.call('clubs.cost',cost);
 		}
 		
 	},
@@ -124,8 +136,12 @@ Template.myclub.events({
 				dup = 1;
 			}
 		}
-		if(dup === 0)
+		if(dup === 0){
 			Meteor.call('clubs.newStaff',staff);
+			var cost = staff.salary;
+			Meteor.call('clubs.cost',cost);
+		}
+			
 		
 	},
 

@@ -19,6 +19,7 @@ Meteor.methods({
     	staffs: [],
     	buildings : [],
     	contracts : [],
+        songs : [],
     	actionPoints : 10,
     	owner : Meteor.userId(),
     	username : Meteor.user().username,
@@ -77,6 +78,13 @@ Meteor.methods({
        { $inc: { coins: 1000 } }
     )
   },
+
+  'clubs.cost'(cost){
+    Clubs.update(
+       { owner : Meteor.userId() },
+       { $inc: { coins: -cost } }
+    )
+  }
 
 
 

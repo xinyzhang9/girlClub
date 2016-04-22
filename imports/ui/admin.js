@@ -5,6 +5,8 @@ import { Template } from 'meteor/templating';
 import { Girls } from '../api/girls.js';
 
 import { Staffs } from '../api/staffs.js';
+
+import { Songs } from '../api/songs.js';
  
 import './body.html';
  
@@ -19,8 +21,13 @@ Template.admin_staffs.helpers({
 	staffs(){
   	return Staffs.find({}, { sort: { createdAt: 1 } });
   },
-})
+});
 
+Template.admin_songs.helpers({
+	songs(){
+  	return Songs.find({}, { sort: { createdAt: 1 } });
+  },
+})
 Template.admin.events({
   'submit .new-girl'(event) {
     // Prevent default browser form submit
@@ -84,6 +91,36 @@ Template.admin.events({
   },
   'click .deleteStaff'(){
   	Meteor.call('staffs.remove', this._id);
+  },
+
+  'submit .new-song'(event){
+  	// Prevent default browser form submit
+    event.preventDefault();
+
+    const target = event.target;
+    const name = target.name.value;
+    const tag = target.tag.value;
+    const level = target.level.value;
+    const cost = target.cost.value;
+    const actionPoints = target.actionPoints.value;
+    const requiredMember = target.requiredMember.value;
+    const minNumber = target.minNumber.value;
+
+    Meteor.call('songs.insert', name, tag, level, cost, actionPoints, requiredMember, minNumber);
+
+    //Clear form
+    target.name.value = '';
+    target.tag.value = '';
+    target.level.value = '';
+    target.cost.value = '';
+    target.actionPoints.value = '';
+    target.requiredMember.value = '';
+    target.minNumber.value = '';
+
+    return false;
+  },
+  'click .deleteSong'(){
+  	Meteor.call('songs.remove', this._id);
   },
 
 });

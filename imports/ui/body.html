@@ -10,7 +10,7 @@
 
   <template name = "admin">
     <form class="new-girl">
-      <h4>for admin only</h4>
+      <h4>members - for admin only</h4>
         <input type="text" name="name" placeholder="name" />
         <input type="text" name="image" placeholder="image" />
         <input type="text" name="age" placeholder="age" />
@@ -44,8 +44,9 @@
     </table>
 
     <hr>
-
     {{> admin_staffs}}
+    <hr>
+    {{> admin_songs}}
   </template>
 
 <template name="girl">   
@@ -186,6 +187,7 @@
         <th>Location</th>
         <th>Members</th>
         <th>Staffs</th>
+        <th>Songs</th>
         <th>Contracts</th> 
         <th>Action</th>       
       </tr>
@@ -208,6 +210,7 @@
         <td>{{location}}</td>
         <td>{{members.length}}</td>
         <td>{{staffs.length}}</td>
+        <td>{{songs.length}}</td>
         <td>{{contracts.length}}</td>
         <td><button class="deleteClub">&times;</button></td>
       </tr>
@@ -248,6 +251,45 @@
           <td>{{job}}</td>
           <td>{{salary}}</td>
           <td><button class="deleteStaff">&times;</button></td> 
+        </tr>
+      {{/each}}
+    </table>
+  </template>
+
+  <template name = "admin_songs">
+    <form class="new-song">
+      <h4>songs - for admin only</h4>
+        <input type="text" name="name" placeholder="name" />
+        <input type="text" name="tag" placeholder="tag" />
+        <input type="text" name="level" placeholder="level" />
+        <input type="text" name="cost" placeholder="cost" />
+        <input type="text" name="actionPoints" placeholder="action points" />
+        <input type="text" name="requiredMember" placeholder="required member" />
+        <input type="text" name="minNumber" placeholder="minimum performers" />
+        <input type="submit" value ="submit" class = "btn btn-success">
+      </form>
+ 
+    <table class = "table">
+      <tr>
+          <th>Name</th>
+          <th>Tag</th>
+          <th>Level</th>
+          <th>Cost</th>
+          <th>Required Points</th>
+          <th>Required Member</th>
+          <th>Minimum Performers</th>
+          <th>Action</th> 
+        </tr>
+      {{#each songs}}
+        <tr>      
+          <td>{{name}}</td>
+          <td>{{tag}}</td>
+          <td>{{level}}</td>
+          <td>{{cost}}</td>
+          <td>{{actionPoints}}</td>
+          <td>{{requiredMember}}</td>
+          <td>{{minNumber}}</td>
+          <td><button class="deleteSong">&times;</button></td> 
         </tr>
       {{/each}}
     </table>
