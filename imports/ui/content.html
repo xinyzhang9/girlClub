@@ -30,7 +30,7 @@
 	   			<td><form class = "releaseMember">
 	      			<input type="hidden" name = "name" value = "{{name}}">
 	      			<input type="hidden" name = "id" value = "{{_id}}">
-	      			<input type="submit" value = "&times;">
+	      			<input type="submit" class = "btn-danger" value = "&times;">
 	      		</form></td>
 	   		</tr>
 	     
@@ -84,6 +84,21 @@
 	      			<input type="submit" class = "btn btn-warning" value = "Practice">
 	      		</form></td>
 	   		</tr>
+	   		<tr>
+	   			<div>
+	   				<h5>Availabe Members to practice this song :</h5>
+	   				{{#each freeMembers}}
+	   					<img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header2_image joinSong">
+	   				{{/each}}
+
+	   			</div>
+	   			<div>
+	   				<h5>Members currently practicing this song : </h5>
+	   				{{#each membersInSong}}
+	   					<img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header2_image quitSong">
+	   				{{/each}}
+	   			</div>
+	   		</tr>
 	     
 	    	{{/each}}
 	    	</table>
@@ -112,7 +127,7 @@
     <div class = "todaystar">
       <form class = "new-member">
         <input type="hidden" name = "id" value = "{{oneGirl._id}}">
-        <input type="submit" class = "btn btn-danger" value = "Recruit ({{oneGirlCost}} coins)">
+        <input type="submit" class = "btn btn-danger" value = "Recruit ({{oneGirlCost}} coins, 2 Action Points)">
       </form>
     </div>
   </div>
@@ -198,11 +213,11 @@
 	   		<td>{{act}} <button class = "addAct btn-info">+</button></td>
 	   		<td>{{dance}} <button class = "addDance btn-info">+</button></td>
 	   		<td>{{instrument}} <button class = "addInstrument btn-info">+</button></td>
-	   		<td>{{fatigue}}</td>
+	   		<td>{{fatigue}} <button class = "reduceFatigue btn-info">-</button></td>
 	   		<td><form class = "releaseMember">
 	      		<input type="hidden" name = "name" value = "{{name}}">
 	      		<input type="hidden" name = "id" value = "{{_id}}">
-	      			<input type="submit" value = "&times;">
+	      		<input type="submit" class = "btn-danger" value = "&times;">
 	      		</form></td>
 	   	</tr>
 	     

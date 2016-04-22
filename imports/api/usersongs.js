@@ -35,4 +35,25 @@ Meteor.methods({
   'usersongs.removeClub'() {
     UserSongs.remove({owner : Meteor.userId()});
   },
+
+  'usersongs.addMember'(songID,girl){
+  	UserSongs.update(
+       { _id : songID },
+       { $push: { members: girl } },
+    );
+  },
+  'usersongs.removeMember'(songID,girl){
+  	var members = UserSongs.findOne({ _id : songID }).members;
+  	var filtered = [];
+  	for(var x in members){
+  		if(members[x].name !== girl.name){
+  			filtered.push(members[x]);
+  		}
+  	}
+  	UserSongs.update(
+       { _id : songID },
+       { $set: { members: filtered } },
+    );
+  },
+
 });

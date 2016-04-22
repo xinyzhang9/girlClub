@@ -180,7 +180,7 @@
 <hr>
   {{# if hasClub}}
   <div> 
-    <h4>day {{daycount}} <button class = "nextday btn btn-warning">Proceed to next day</button></h4>
+    <h4>day {{daycount}} <button class = "nextday btn btn-warning">>> Proceed to next day</button></h4>
     <table class = "table">
       <tr>
         <th>Club Name</th>
@@ -208,14 +208,14 @@
 <template name = "findmyclub">
       <tr>
         <td>{{clubname}}</td>
-        <td>{{actionPoints}} <button class = "addActionPoints">+</button></td>
-        <td>{{coins}} <button class = "addCoins">+</button></td>
+        <td>{{actionPoints}} <button class = "addActionPoints btn-info">+</button></td>
+        <td>{{coins}} <button class = "addCoins btn-info">+</button></td>
         <td>{{location}}</td>
         <td>{{members.length}}</td>
         <td>{{staffs.length}}</td>
         <td>{{songs.length}}</td>
         <td>{{contracts.length}}</td>
-        <td><button class="deleteClub">&times;</button></td>
+        <td><button class="deleteClub btn-danger">&times;</button></td>
       </tr>
 </template>
 

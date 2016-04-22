@@ -7,6 +7,13 @@ body{
 	height: 120px;
 	display: block;
 }
+.header2_image{
+	height: 120px;
+	display: inline-block;
+	margin-right: 10px;
+	border: 1px solid green;
+	padding: 5px;
+}
 .song_image{
 	height: 120px;
 	width: 120px;

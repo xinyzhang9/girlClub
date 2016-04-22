@@ -13,31 +13,31 @@ Meteor.methods({
     }
  
     UserGirls.insert({
-    		original_id : girl._id,
+    	original_id : girl._id,
 			name : girl.name,
-	      	image : girl.image,
-	        age : girl.age,
-	      	height : girl.height,
-	      	nickname : girl.nickname,
-	      	birthplace : girl.birthplace,
-	      	sing : parseInt(girl.sing),
-	      	dance : parseInt(girl.dance),
-	      	act : parseInt(girl.act),
-	      	instrument : parseInt(girl.instrument),
-	      	leadership : parseInt(girl.leadership),
-	      	potential : parseInt(girl.potential),
-	      	temper : parseInt(girl.temper),
-	      	rating : girl.rating,
-	      	fans : 0,
-	      	salary : 20,
-	      	fatigue : 0,
-	      	busy : 0, //0 means free, 10 means not free in next 10 days
-	      	owner : Meteor.userId(),
-    		username : Meteor.user().username,
-    		exp : 0,
-    		level : 1,
-    		role : "member",
-	      	createdAt: new Date(), // current time
+	    image : girl.image,
+	    age : girl.age,
+	    height : girl.height,
+	    nickname : girl.nickname,
+	    birthplace : girl.birthplace,
+	    sing : parseInt(girl.sing),
+	    dance : parseInt(girl.dance),
+	    act : parseInt(girl.act),
+	    instrument : parseInt(girl.instrument),
+	    leadership : parseInt(girl.leadership),
+	    potential : parseInt(girl.potential),
+	    temper : parseInt(girl.temper),
+	    rating : girl.rating,
+	    fans : 0,
+	    salary : 20,
+	    fatigue : 0,
+	    busy : 0, //0 means free, 10 means not free in next 10 days
+	    owner : Meteor.userId(),
+    	username : Meteor.user().username,
+    	exp : 0,
+    	level : 1,
+    	role : "member",
+	    createdAt: new Date(), // current time
 		})
 		console.log("girl created!")
     	return false;
@@ -53,6 +53,31 @@ Meteor.methods({
        { _id : id },
        { $inc: { fatigue: val } },
     );
+  },
+  'usergirls.reduceFatigue'(id,val){
+    UserGirls.update(
+       { _id : id },
+       { $inc: { fatigue: -val } },
+    );
+  },
+  'usergirls.addExp'(id,val){
+    var girl = UserGirls.findOne({_id : id});
+    if(girl.exp + val >= 100){
+      UserGirls.update(
+         { _id : id },
+         { $inc: { level: 1 } },
+      );
+      UserGirls.update(
+         { _id : id },
+         { $set: { exp: girl.exp + val - 100 } },
+      );
+    }else{
+      UserGirls.update(
+         { _id : id },
+         { $inc: { exp: val } },
+      );
+    }
+    
   },
   'usergirls.addSing'(id,val){
   	UserGirls.update(
@@ -76,6 +101,12 @@ Meteor.methods({
   	UserGirls.update(
        { _id : id },
        { $inc: { instrument: val } },
+    );
+  },
+  'usergirls.setBusy'(id,val){
+    UserGirls.update(
+       { _id : id },
+       { $set: { busy: val } },
     );
   },
 });
