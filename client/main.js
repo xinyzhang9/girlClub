@@ -35,3 +35,11 @@ Router.route('/member/:_id', {
         return Girls.findOne({ _id : member_id });
     }
 });
+
+Router.route('/usermember/:_id', {
+    template: 'memberProfile',
+    data: function(){
+        var member_id = this.params._id;
+        return UserGirls.findOne({ _id : member_id });
+    }
+});

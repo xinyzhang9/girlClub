@@ -20,17 +20,18 @@ Meteor.methods({
 	      	height : girl.height,
 	      	nickname : girl.nickname,
 	      	birthplace : girl.birthplace,
-	      	sing : girl.sing,
-	      	dance : girl.dance,
-	      	act : girl.act,
-	      	instrument : girl.instrument,
-	      	leadership : girl.leadership,
-	      	potential : girl.potential,
-	      	temper : girl.temper,
+	      	sing : parseInt(girl.sing),
+	      	dance : parseInt(girl.dance),
+	      	act : parseInt(girl.act),
+	      	instrument : parseInt(girl.instrument),
+	      	leadership : parseInt(girl.leadership),
+	      	potential : parseInt(girl.potential),
+	      	temper : parseInt(girl.temper),
 	      	rating : girl.rating,
 	      	fans : 0,
 	      	salary : 20,
 	      	fatigue : 0,
+	      	busy : 0, //0 means free, 10 means not free in next 10 days
 	      	owner : Meteor.userId(),
     		username : Meteor.user().username,
     		exp : 0,
@@ -46,5 +47,11 @@ Meteor.methods({
   },
   'usergirls.removeClub'() {
     UserGirls.remove({owner : Meteor.userId()});
+  },
+  'usergirls.addSing'(id,val){
+  	UserGirls.update(
+       { _id : id },
+       { $inc: { sing: val } },
+    );
   },
 });

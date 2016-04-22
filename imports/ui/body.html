@@ -178,7 +178,9 @@
   </div>
   {{/if}}
 <hr>
-  <div>
+  {{# if hasClub}}
+  <div> 
+    <h4>day {{daycount}} <button class = "nextday btn btn-warning">Proceed to next day</button></h4>
     <table class = "table">
       <tr>
         <th>Club Name</th>
@@ -200,6 +202,7 @@
     <hr>
     
   </div>
+  {{/if}}
 
 </template>
 <template name = "findmyclub">
@@ -222,6 +225,7 @@
     <li data-template="staffs" role="presentation"><a href="#">Staffs</a></li>
     <li data-template="contracts" role="presentation"><a href="#">Contracts</a></li>
     <li data-template="songs" role="presentation"><a href="#">Songs</a></li>
+    <li data-template="training" role="presentation"><a href="#">Training</a></li>
   </ul>
   {{> Template.dynamic template="content" data=tabData}}
 </template>

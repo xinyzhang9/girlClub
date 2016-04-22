@@ -21,6 +21,7 @@ Meteor.methods({
     	contracts : [],
         songs : [],
     	actionPoints : 10,
+        daycount : 1,
     	owner : Meteor.userId(),
     	username : Meteor.user().username,
     	createdAt : new Date(),
@@ -92,6 +93,23 @@ Meteor.methods({
        { owner : Meteor.userId() },
        { $inc: { coins: -cost } }
     )
+  },
+
+  'clubs.nextday'(){
+    Clubs.update(
+       { owner : Meteor.userId() },
+       { $inc: { daycount: 1 } },
+    );
+    Clubs.update(
+       { owner : Meteor.userId() },
+       { $set: { actionPoints: 10 } },
+    );
+  },
+  'clubs.spendActionPoints'(points){
+    Clubs.update(
+       { owner : Meteor.userId() },
+       { $inc: { actionPoints: -points } },
+    );
   }
 
 

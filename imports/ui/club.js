@@ -32,6 +32,12 @@ Template.myclub.helpers({
   hasNoClub(){
   	return Clubs.findOne({owner : Meteor.userId()}) === undefined;
   },
+  hasClub(){
+  	return Clubs.findOne({owner : Meteor.userId()}) !== undefined;
+  },
+  daycount(){
+  	return Clubs.findOne({owner : Meteor.userId()}).daycount;
+  }
   
 });
 
@@ -46,6 +52,13 @@ Template.club_song.helpers({
   	return Songs.find({}, { sort: { level: 1 } });
   },
 })
+
+Template.club_member.helpers({
+	members(){
+  	return UserGirls.find({owner : Meteor.userId()}).fetch();
+  },
+})
+
 
 
 Template.scout.helpers({
@@ -132,6 +145,8 @@ Template.myclub.events({
 	  			cost = 10;
 	  		}
 			Meteor.call('clubs.cost',cost);
+			//spend 2 actionPoints.
+			// Meteor.call('clubs.spendActionPoints',2);
 		}
 		
 	},
@@ -182,6 +197,9 @@ Template.myclub.events({
 			//deduct cost from club
 			Meteor.call('clubs.cost',song.cost);
 		}
+	},
+	'click .nextday'(event){
+		Meteor.call('clubs.nextday');
 	}
 
 })

@@ -26,10 +26,11 @@ Template.index.helpers({
     var tab = Template.instance().currentTab.get();
 
     var data = {
-      "members": Clubs.findOne({owner : Meteor.userId()}).members,
+      "members": UserGirls.find({owner : Meteor.userId()}).fetch(),
       "staffs": Clubs.findOne({owner : Meteor.userId()}).staffs,
       "contracts": Clubs.findOne({owner : Meteor.userId()}).contracts,
       "songs" : Clubs.findOne({owner : Meteor.userId()}).songs,
+      "training" : [],
 
         
     };
@@ -62,6 +63,9 @@ Template.content.helpers({
   isSongs(){
     return this.contentType === "songs";
   },
+  isTraining(){
+    return this.contentType === "training";
+  },
 });
 
 Template.content.events({
@@ -79,4 +83,11 @@ Template.content.events({
     Meteor.call('usergirls.remove', name);
   },
 
+})
+
+Template.club_member.events({
+  'click .addSing'(event){
+    console.log(this._id);
+    Meteor.call('usergirls.addSing',this._id,1);
+  }
 })

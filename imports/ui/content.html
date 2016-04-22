@@ -17,7 +17,7 @@
 	   		{{#each this.items}}
 	   		<tr>
 	   			<td>
-		            <a href = "/member/{{original_id}}">
+		            <a href = "/usermember/{{_id}}">
 		              <img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header_image">
 		          </a>
 		        </td>
@@ -91,6 +91,10 @@
 	    	{{> club_song}}
   	{{/if}}
 
+  	{{#if isTraining}}
+		{{> club_member}}
+  	{{/if}}
+
 
 </template>
 
@@ -146,7 +150,7 @@
           <th>Level</th>
           <th>Cost</th>
           <th>Required Points</th>
-          <th>Required Member</th>
+          <th>Recommended Member</th>
           <th>Minimum Performers</th>
           <th>Action</th> 
         </tr>
@@ -163,4 +167,45 @@
         </tr>
       {{/each}}
     </table>
+</template>
+
+<template name = "club_member">
+	<table class = "table">
+  		<tr>
+  			<th>Image</th>
+  			<th>Name</th>
+			<th>Level</th>
+  			<th>Exp</th>
+  			<th>sing</th>
+  			<th>dance</th>
+  			<th>act</th>
+  			<th>instrument</th>
+  			<th>Fatigue</th>
+  			<th>Action</th>
+ 		</tr>
+  			
+	   	{{#each members}}
+	   	<tr>
+	   		<td>
+		        <a href = "/usermember/{{_id}}">
+		           <img src="http://www.snh48.com/images/member/{{image}}.jpg" alt="" class = "header_image">
+		        </a>
+		    </td>
+	   		<td><strong>{{name}}</strong></td>
+	   		<td>{{level}}</td>
+	   		<th>{{exp}}</th>
+	   		<td>{{sing}} <button class = "addSing">+</button></td>
+	   		<td>{{act}}</td>
+	   		<td>{{dance}}</td>
+	   		<td>{{instrument}}</td>
+	   		<td>{{fatigue}}</td>
+	   		<td><form class = "releaseMember">
+	      		<input type="hidden" name = "name" value = "{{name}}">
+	      		<input type="hidden" name = "id" value = "{{_id}}">
+	      			<input type="submit" value = "&times;">
+	      		</form></td>
+	   	</tr>
+	     
+	    {{/each}}
+	</table>
 </template>
