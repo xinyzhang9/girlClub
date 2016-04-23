@@ -4,5 +4,7 @@ who recuit talented girls, staffs, sign contracts, do training and perform songs
 # ScreenShot
 practice songs  
 ![alt tag](https://raw.githubusercontent.com/xinyzhang9/girlClub/master/screen.png)
-scout members  
+training session  
 ![alt tag](https://raw.githubusercontent.com/xinyzhang9/girlClub/master/screen2.png)
+scout  
+![alt tag](https://raw.githubusercontent.com/xinyzhang9/girlClub/master/screen3.png)
