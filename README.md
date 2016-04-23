@@ -9,7 +9,7 @@ Your Professional scout will find an excellent girl everyday. You decide whether
 You can spend action points to train any of your members in either singing, dancing, acting or instrument. Action points will be reset to 10 at next day.  
 ![alt tag](https://raw.githubusercontent.com/xinyzhang9/girlClub/master/screen2.png)
 # practice songs  
-You can buy songs in the market and select your members to practice that. Each song has different requirements such as minimum numbers of performance. When you reach that requirement, you can practice that while listening to that song.
+You can buy songs in the market and select your members to practice that. Each song has different requirements such as minimum numbers of performers. When you reach those requirements, you can practice that while listening to that song.
 ![alt tag](https://raw.githubusercontent.com/xinyzhang9/girlClub/master/screen.png)
 
 to be continue...  
