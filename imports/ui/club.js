@@ -37,6 +37,15 @@ Template.myclub.helpers({
   },
   daycount(){
   	return Clubs.findOne({owner : Meteor.userId()}).daycount;
+  },
+  today(){
+  	var d = Clubs.findOne({owner : Meteor.userId()}).createdAt;
+  	var daycount = Clubs.findOne({owner : Meteor.userId()}).daycount;
+	d.setDate(d.getDate() + daycount);
+	var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+	var week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+	var string = month[d.getMonth()]+' '+d.getDate()+','+d.getFullYear() +' ('+ week[d.getDay()] + ') ';
+	return string;
   }
   
 });
@@ -66,7 +75,7 @@ Template.scout.helpers({
   		var array = Girls.find().fetch();
 		var d = new Date();
 		//today's star
-		var s = Math.round(d.getTime()/1000/3600/1);
+		var s = Math.round(d.getTime()/1000/60/1); //refresh per min
 		console.log(s);
 		var index = s % array.length;
 		var element = array[index];
@@ -76,7 +85,7 @@ Template.scout.helpers({
   		var array = Girls.find().fetch();
 		var d = new Date();
 		//today's star
-		var s = Math.round(d.getTime()/1000/3600/1);
+		var s = Math.round(d.getTime()/1000/60/1);
 		console.log(s);
 		var index = s % array.length;
 		var element = array[index];

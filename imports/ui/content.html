@@ -173,7 +173,7 @@
 	   		<td>{{act}} <button class = "addAct btn-info">+</button></td>
 	   		<td>{{dance}} <button class = "addDance btn-info">+</button></td>
 	   		<td>{{instrument}} <button class = "addInstrument btn-info">+</button></td>
-	   		<td>{{fatigue}} <button class = "reduceFatigue btn-info">-</button></td>
+	   		<td>{{fatigue}} <button class = "reduceFatigue btn-warning">-</button></td>
 	   		<td><form class = "releaseMember">
 	      		<input type="hidden" name = "name" value = "{{name}}">
 	      		<input type="hidden" name = "id" value = "{{_id}}">
@@ -193,6 +193,7 @@
   			<th>Progress</th>
   			<th>Performers</th>
   			<th>Action</th>
+  			<th>Listen</th>
   		</tr>
 		<tr>
 		   	<td><img src="images/{{tag}}.jpg" class = "song_image" alt=""></td>
@@ -200,6 +201,9 @@
 		   	<td>{{curPoints}} / {{actionPoints}}</td>
 		   	<td>{{members.length}} / {{minNumber}}</td>
 		   	<td><button class = "practice btn btn-warning">practice</button></td>
+		   	<td>
+		   		<audio src="sounds/{{tag}}.mp3" controls></audio>
+		   	</td>
 		</tr>
 	</table>
 	<div>

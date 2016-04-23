@@ -180,7 +180,7 @@
 <hr>
   {{# if hasClub}}
   <div> 
-    <h4>day {{daycount}} <button class = "nextday btn btn-warning">>> Proceed to next day</button></h4>
+    <h4>{{today}}, Day {{daycount}} <button class = "nextday btn btn-warning">>> Proceed to next day</button></h4>
     <table class = "table">
       <tr>
         <th>Club Name</th>
@@ -223,9 +223,9 @@
   <ul class="nav nav-pills">
     <li data-template="members" role="presentation" class="active"><a href="#">Members</a></li>
     <li data-template="staffs" role="presentation"><a href="#">Staffs</a></li>
-    <li data-template="contracts" role="presentation"><a href="#">Contracts</a></li>
     <li data-template="songs" role="presentation"><a href="#">Songs</a></li>
     <li data-template="training" role="presentation"><a href="#">Training</a></li>
+    <li data-template="contracts" role="presentation"><a href="#">Contracts</a></li>
   </ul>
   {{> Template.dynamic template="content" data=tabData}}
 </template>
@@ -283,6 +283,7 @@
           <th>Required Member</th>
           <th>Minimum Performers</th>
           <th>Action</th> 
+          <th>Listen</th>
         </tr>
       {{#each songs}}
         <tr>      
@@ -294,6 +295,7 @@
           <td>{{requiredMember}}</td>
           <td>{{minNumber}}</td>
           <td><button class="deleteSong">&times;</button></td> 
+          <td><audio src="sounds/{{tag}}.mp3" controls></audio></td>
         </tr>
       {{/each}}
     </table>
