@@ -13,20 +13,20 @@ Meteor.methods({
     }
  
     UserSongs.insert({
-    		original_id : song._id,
+      original_id : song._id,
 			name : song.name,
-	      	tag : song.tag,
-	      	level : parseInt(song.level),
-	      	cost : parseInt(song.cost),
-	      	curPoints : 0, //current actionPoints
-	      	actionPoints : parseInt(song.actionPoints),
-	      	requiredMember : song.requiredMember,
-	      	minNumber : parseInt(song.minNumber),
-	      	center : null, //center singer
-	      	members : [], //singers
-	      	owner : Meteor.userId(),
-    		username : Meteor.user().username,
-	      	createdAt: new Date(), // current time
+	    tag : song.tag,
+	    level : parseInt(song.level),
+	    cost : parseInt(song.cost),
+	    curPoints : 0, //current actionPoints
+	    actionPoints : parseInt(song.actionPoints),
+	    requiredMember : song.requiredMember,
+	    minNumber : parseInt(song.minNumber),
+	    center : null, //center singer
+	    members : [], //singers
+	    owner : Meteor.userId(),
+      username : Meteor.user().username,
+	    createdAt: new Date(), // current time
 		})
 		console.log("girl created!")
     	return false;

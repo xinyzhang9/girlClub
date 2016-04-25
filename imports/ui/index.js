@@ -10,6 +10,8 @@ import { UserGirls } from '../api/usergirls.js';
 
 import { UserSongs } from '../api/usersongs.js';
 
+import { Contracts } from '../api/contracts.js';
+
 import { ReactiveVar } from 'meteor/reactive-var'
  
 import './body.html';

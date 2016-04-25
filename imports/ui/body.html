@@ -47,6 +47,8 @@
     {{> admin_staffs}}
     <hr>
     {{> admin_songs}}
+    <hr>
+    {{> admin_contracts}}
   </template>
 
 <template name="girl">   
@@ -296,6 +298,45 @@
           <td>{{minNumber}}</td>
           <td><button class="deleteSong">&times;</button></td> 
           <td><audio src="sounds/{{tag}}.mp3" controls></audio></td>
+        </tr>
+      {{/each}}
+    </table>
+  </template>
+
+  <template name = "admin_contracts">
+    <form class="new-contract">
+      <h4>contracts - for admin only</h4>
+        <input type="text" name = "name" placeholder = "name" />
+        <input type="text" name = "sponsor" placeholder = "sponsor" />
+        <input type="text" name = "coins" placeholder = "coins" />
+        <input type="text" name = "startDay" placeholder = "startDay" />
+        <input type="text" name = "dayCount" placeholder = "dayCount" />
+        <input type="text" name = "requiredNum" placeholder = "requiredNum" />
+        <input type="text" name = "songLevel" placeholder = "songLevel" />
+        <input type="submit" value ="submit" class = "btn btn-success" />
+      </form>
+ 
+    <table class = "table">
+      <tr>
+          <th>Name</th>
+          <th>Sponsor</th>
+          <th>Coins</th>
+          <th>Start Day</th>
+          <th>Day Count</th>
+          <th>Required Member Counts</th>
+          <th>Song Level</th>
+          <th>Action</th> 
+        </tr>
+      {{#each contracts}}
+        <tr>      
+          <td>{{name}}</td>
+          <td>{{sponsor}}</td>
+          <td>{{coins}}</td>
+          <td>{{startDay}}</td>
+          <td>{{dayCount}}</td>
+          <td>{{requiredNum}}</td>
+          <td>{{songLevel}}</td>
+          <td><button class="deleteContracts">&times;</button></td> 
         </tr>
       {{/each}}
     </table>

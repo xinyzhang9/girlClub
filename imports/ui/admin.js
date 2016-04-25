@@ -7,7 +7,9 @@ import { Girls } from '../api/girls.js';
 import { Staffs } from '../api/staffs.js';
 
 import { Songs } from '../api/songs.js';
- 
+
+import { Contracts } from '../api/contracts.js';
+
 import './body.html';
  
 Template.admin.helpers({
@@ -28,6 +30,45 @@ Template.admin_songs.helpers({
   	return Songs.find({}, { sort: { createdAt: 1 } });
   },
 })
+
+Template.admin_contracts.helpers({
+  contracts(){
+    return Contracts.find({}, { sort: { createdAt: 1 } });
+  },
+})
+
+Template.admin_contracts.events({
+  'submit .new-contract'(event){
+    event.preventDefault();
+
+    const target = event.target;
+    const name = target.name.value;
+    const sponsor = target.sponsor.value;
+    const coins = target.coins.value;
+    const startDay = target.startDay.value; //based on daycount of the Club's created_at
+    const dayCount = target.dayCount.value;
+    const requiredNum = target.requiredNum.value;
+    const songLevel = target.songLevel.value;
+
+    Meteor.call('contracts.insert', name, sponsor, coins, startDay, dayCount, requiredNum, songLevel);
+
+    //clear form
+    target.name.value = '';
+    target.sponsor.value = '';
+    target.coins.value = '';
+    target.startDay.val = '';
+    target.dayCount.val = '';
+    target.requiredNum.val = '';
+    target.songLevel.val = '';
+
+    return false;
+  },
+
+  'click .deleteContracts'(){
+    Meteor.call('contracts.remove', this._id);
+  },
+})
+
 Template.admin.events({
   'submit .new-girl'(event) {
     // Prevent default browser form submit
@@ -122,5 +163,7 @@ Template.admin.events({
   'click .deleteSong'(){
   	Meteor.call('songs.remove', this._id);
   },
+
+  
 
 });
