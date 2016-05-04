@@ -6,6 +6,7 @@ import '../imports/api/staffs.js';
 import '../imports/api/songs.js';
 import '../imports/api/usersongs.js';
 import '../imports/api/contracts.js';
+import '../imports/api/usercontracts.js';
 
 Meteor.startup(() => {
   // code to run on server at startup

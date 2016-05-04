@@ -8,6 +8,7 @@ import { Staffs } from '../imports/api/staffs.js';
 import { Songs } from '../imports/api/songs.js';
 import { UserSongs } from '../imports/api/usersongs.js';
 import { Contracts } from '../imports/api/contracts.js';
+import { UserContracts } from '../imports/api/usercontracts.js';
 import '../imports/startup/accounts-config.js';
 Router.route('/',{
 	name: 'home',

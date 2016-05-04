@@ -14,6 +14,8 @@ import { Songs } from '../api/songs.js';
 
 import { UserSongs } from '../api/usersongs.js';
 
+import { UserContracts } from '../api/usercontracts.js';
+
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 import '../startup/accounts-config.js';

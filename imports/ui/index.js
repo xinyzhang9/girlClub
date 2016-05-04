@@ -12,6 +12,8 @@ import { UserSongs } from '../api/usersongs.js';
 
 import { Contracts } from '../api/contracts.js';
 
+import { UserContracts } from '../api/usercontracts.js';
+
 import { ReactiveVar } from 'meteor/reactive-var'
  
 import './body.html';

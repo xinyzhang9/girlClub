@@ -10,6 +10,8 @@ import { Songs } from '../api/songs.js';
 
 import { Contracts } from '../api/contracts.js';
 
+import { UserContracts } from '../api/usercontracts.js';
+
 import './body.html';
  
 Template.admin.helpers({
